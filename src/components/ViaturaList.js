@@ -27,8 +27,23 @@ export default function ViaturaList() {
 
   return (
     <>
-    { console.log(data) }
-      
+    {/*
+    { console.log(JSON.parse(data).lstVehicleData[0]) }
+     fetch('http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetVehicle/' + this.carid)
+            .then(response => response.json())
+            .then(response => {
+                var VehicleResponse = JSON.parse(response).lstVehicleData;
+                this.vehic = VehicleResponse[0];
+                this.setState({ isMounted: true });
+            }).catch(
+                err => {
+                    console.error(err);
+                }
+            ); 
+    */}
+
+
+
     {/* <div style={{ maxWidth: '100%' }}>  */}
     <MaterialTable
       title="Veículos"

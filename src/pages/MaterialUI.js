@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
   SearchState,
@@ -20,52 +20,7 @@ import {
 } from '@devexpress/dx-react-grid-material-ui'
 import { useFetch } from "../pages/hooks"
 //import Loading from '../images/loading_blue.gif'
-
-
-// function createData(name, sex, city, car) {
-//   return { name, sex, city, car};
-// }
-
-
-// const rowss = [
-//   createData('Sandra', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Paul', 'Male', 'Lima', 'Nissan Altima'),
-//   createData('Mark', 'Male', 'Paris', 'Honda Accord'),
-//   createData('Jair', 'Male', 'Rio de Janeiro', 'Audi A4'),
-//   createData('Joao', 'Male', 'Madrid', 'Nissan Altima'),
-//   createData('Hanna', 'Female', 'Paris', 'Honda Accord'),
-//   createData('Guiuli', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Rafaela', 'Female', 'Barcelona', 'Nissan Altima'),
-//   createData('Selim', 'Female', 'Lyon', 'Honda Accord'),
-//   createData('Ana', 'Female', 'Oslo', 'Audi A4'),
-//   createData('Arthur', 'Male', 'Jacarta', 'Nissan Altima'),
-//   createData('Marcelo', 'Male', 'Paris', 'Honda Accord'),
-//   createData('Sandra', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Paul', 'Male', 'Lima', 'Nissan Altima'),
-//   createData('Mark', 'Male', 'Paris', 'Honda Accord'),
-//   createData('Jair', 'Male', 'Rio de Janeiro', 'Audi A4'),
-//   createData('Joao', 'Male', 'Madrid', 'Nissan Altima'),
-//   createData('Hanna', 'Female', 'Paris', 'Honda Accord'),
-//   createData('Guiuli', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Rafaela', 'Female', 'Barcelona', 'Nissan Altima'),
-//   createData('Selim', 'Female', 'Lyon', 'Honda Accord'),
-//   createData('Ana', 'Female', 'Oslo', 'Audi A4'),
-//   createData('Arthur', 'Male', 'Jacarta', 'Nissan Altima'),
-//   createData('Marcelo', 'Male', 'Paris', 'Honda Accord'),
-//   createData('Sandra', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Paul', 'Male', 'Lima', 'Nissan Altima'),
-//   createData('Mark', 'Male', 'Paris', 'Honda Accord'),
-//   createData('Jair', 'Male', 'Rio de Janeiro', 'Audi A4'),
-//   createData('Joao', 'Male', 'Madrid', 'Nissan Altima'),
-//   createData('Hanna', 'Female', 'Paris', 'Honda Accord'),
-//   createData('Guiuli', 'Female', 'Las Vegas', 'Audi A4'),
-//   createData('Rafaela', 'Female', 'Barcelona', 'Nissan Altima'),
-//   createData('Selim', 'Female', 'Lyon', 'Honda Accord'),
-//   createData('Ana', 'Female', 'Oslo', 'Audi A4'),
-//   createData('Arthur', 'Male', 'Jacarta', 'Nissan Altima'),
-//   createData('Marcelo', 'Male', 'Paris', 'Honda Accord'),
-// ];
-
+import Context from "../UserContext";
 
 const getHiddenColumnsFilteringExtensions = hiddenColumnNames => hiddenColumnNames
   .map(columnName => ({
@@ -73,16 +28,59 @@ const getHiddenColumnsFilteringExtensions = hiddenColumnNames => hiddenColumnNam
     predicate: () => false,
   }));
 
+  const theheader = new Headers();
+  theheader.set('Accept-Encoding','gzip');
+
+
+  // var VehicleResponse = new clsVehicleResponse()
+  // VehicleResponse.datetime = JSON.parse(response).datetime;
+  // VehicleResponse.lstVehicleData = JSON.parse(response).lstVehicleData;
+  // this.setState({ isMounted: true, objVehicleResponse: VehicleResponse });
 
 
 export default () => {
-  const [data, loading] = useFetch("https://jsonplaceholder.typicode.com/todos");
+  const { acesso, setAcesso } = useContext(Context)
+  let connectionString = "" 
+
+  if (acesso==="normal-user"){
+    connectionString="https://jsonplaceholder.typicode.com/todos?userId=2"
+    //connectionString='http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetVehicle?Fields=CADVehicleId;CADUnitId;CADUnitId;ViaMATRICULA;SBOXID'
+  }
+  else
+  {
+    connectionString="https://jsonplaceholder.typicode.com/todos"  
+    //connectionString='http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetVehicle?Fields=CADVehicleId;CADUnitId;CADUnitId;ViaMATRICULA;SBOXID'
+  }
+
+
+
+//   'http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetVehicle?Fields=CADVehicleId;CADUnitId;CADUnitId;ViaMATRICULA;SBOXID'
+//   , { headers: theheader  }
+// )
+//   .then(response => response.json())
+//   .then(response => {
+//       var VehicleResponse = new clsVehicleResponse()
+//       VehicleResponse.datetime = JSON.parse(response).datetime;
+//       VehicleResponse.lstVehicleData = JSON.parse(response).lstVehicleData;
+//       this.setState({ isMounted: true, objVehicleResponse: VehicleResponse });
+//   }).catch(
+//       err => {
+//           console.error(err);
+//       }
+//   );
+
+
+
+
+
+
+  const [data, loading] = useFetch(connectionString);
+  //const [data, loading] = useFetch(connectionString, { headers: theheader });
 
   const [columns] = useState([
     { name: 'userId', title: 'userId' },
     { name: 'id', title: 'id' },
     { name: 'title', title: 'title' },
-    //{ name: 'completed', title: 'completed' },
   ]);
   // const [currentPage, setCurrentPage] = useState(0);
   // const [pageSize, setPageSize] = useState(5);

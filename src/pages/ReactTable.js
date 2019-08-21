@@ -4,9 +4,17 @@ import { useFetch } from "../pages/hooks";
 //import useFetch, { useJsonResponse } from 'react-use-fetch';
 
 
+
+const MyFetchingComponent = () => {
+  const response = useFetch('http://lis-sgiv-smsiap/IPT_Fleet_Cred/get.aspx', { method: 'GET' });
+  return 'The server responded with: ' + response;
+};
+
+
 export default () => {
   const [data, loading] = useFetch(
-    "https://jsonplaceholder.typicode.com/todos"
+     "https://jsonplaceholder.typicode.com/todos"
+    //"http://lis-sgiv-smsiap/IPT_Fleet_Cred/get.aspx"
   );
 
   const dataTable = {
@@ -534,12 +542,14 @@ export default () => {
       {console.log(dataTable)}  
       {loading ? (
         <p>Loading...</p>      
-      ) : (      
+      ) : (  
+      // <MyFetchingComponent />    
       <MDBDataTable
-        striped
-        bordered
+        //striped
+        //bordered
         small
         data={dataTable}
+        
       />
       )}
     </Fragment>

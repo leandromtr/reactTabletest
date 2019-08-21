@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext,Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-
+import Context from "../UserContext";
 
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
@@ -24,14 +24,15 @@ function createData(codigo, unidade, viatura, data, hora, tipo, evento, estado, 
   return { codigo, unidade, viatura, data, hora, tipo, evento, estado, observacoes, utilizador, actualizadoem};
 }
 
-
 const rows = [
   createData(2222, 'M071', 'V410', '26-10-2012', '11:05:43', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
   createData(3333, 'M072', 'V510', '27-05-2016', '02:11:43', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
   createData(4444, 'M073', 'V610', '19-01-2004', '13:33:22', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
   createData(5555, 'M074', 'V710', '13-10-2013', '04:45:55', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
   createData(6666, 'M075', 'V810', '04-11-2017', '07:35:43', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
-];
+  createData(7777, 'M076', 'V910', '15-03-2018', '07:35:43', 'Alarme', 'Alerta de temperatura', 'Alerta de temperatura', 'observaçao', 'admin', '26-10-2012 11:05:43'),
+]
+
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,7 +58,9 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const headRows = [
+
+const headRows = 
+[
   { id: 'codigo', numeric: true, disablePadding: false, label: 'Código' }, 
   { id: 'unidade', numeric: true, disablePadding: false, label: 'Unidade' }, 
   { id: 'viatura', numeric: true, disablePadding: false, label: 'Viatura' }, 
@@ -69,8 +72,7 @@ const headRows = [
   { id: 'observacoes', numeric: true, disablePadding: false, label: 'Observações' }, 
   { id: 'utilizador', numeric: true, disablePadding: false, label: 'Utilizador' }, 
   { id: 'actualizadoem', numeric: true, disablePadding: false, label: 'Actualizado em' }, 
-];
-
+]
 
 
 function EnhancedTableHead(props) {
@@ -80,6 +82,8 @@ function EnhancedTableHead(props) {
   };
 
   return (
+    <Fragment>
+
     <TableHead>
       <TableRow>
         {headRows.map(row => (
@@ -88,7 +92,8 @@ function EnhancedTableHead(props) {
             align={row.numeric ? 'right' : 'left'}
             padding={row.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === row.id ? order : false}
-          >
+          >            
+            {/* <button onClick={() => setAcesso("Admin")}>Admin</button> */}
             <TableSortLabel
               active={orderBy === row.id}
               direction={order}
@@ -100,6 +105,7 @@ function EnhancedTableHead(props) {
         ))}
       </TableRow>
     </TableHead>
+    </Fragment>
   );
 }
 
@@ -205,7 +211,11 @@ export default function EnhancedTable() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
+  const { acesso, setAcesso } = useContext(Context)
+
   return (
+    <Fragment>  
+      
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar />
@@ -274,5 +284,6 @@ export default function EnhancedTable() {
         label="Dense padding"
       />
     </div>
-  );
+    </Fragment>
+  )
 }

@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './App';
+import './bootstrap.min.css'
+import './App.css'
+
 import Navbar from './shared/Navbar.js'
-import Footer from './shared/Footer.js'
+//import Footer from './shared/Footer.js'
+
+// const UserContext = React.createContext()
 
 ReactDOM.render(
     <> 
-    <Navbar />
-    {/* <Footer /> */}
+    {/* <UserContext.Provider value ={"aaa"}> */}
+        <Navbar />
+        {/* <Footer /> */}
+    {/* </UserContext.Provider> */}
     </>, 
 document.getElementById('root'));
