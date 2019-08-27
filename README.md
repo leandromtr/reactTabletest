@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação React
 
-## Available Scripts
+Informações do Projeto
+Development environment: Visual Studio Code
+Version: 16.8
 
-In the project directory, you can run:
+Requisitos para execução
+•	NodeJs instalado
+•	Utilizar algum editor para execução (ex. VS Code)
 
-### `npm start`
+Instruções para execução
+•	Abrir um editor de texto (ex. VS Code)
+•	Selecionar o ficheiro referente ao projeto
+•	Abrir um terminal no editor de texto (Ctrl + Shift + ç)
+•	Digitar “npm start”
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Estrutura utilizada no Projeto
+•	Node_Modules – Ficheiros necessários do React e plugins adicionados ao projeto.
+•	Public – Contém o índex.html
+•	SRC – Arquivos referente ao projeto
+o	Componentes – Arquivos com funções semelhantes a partialViews
+o	Imagens – Imagens utilizadas no Projeto
+o	Pages – Páginas disponíveis no Projeto e apresentadas no menu principal
+o	Services – Arquivos com funções específicas (ex. hooks.js conexão com DB)
+o	Shared – Armazena a NavBar e o Footer
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Páginas
 
-### `npm run build`
+Home – Página que permite alternar entre 2 possíveis perfis de acesso, a qual retorna diferentes tipos de informações consoante ao perfil de acesso selecionado na MaterialUI. 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Relatório – Sem função
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Viaturas – Lista que utiliza o plugin Material-UI e seria utilizado como modelo para edição dos registros. A API de referência foi: “http://jsonplaceholder.typicode.com/users”
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Eventos – Lista que utiliza o plugin Material-UI com paginação, ordenação de campos e compactação de linhas. Os dados apresentados foram criados em um array.
 
-### `npm run eject`
+Geofences – Lista simples de dados a partir de uma API. A API de referência foi: “https://jsonplaceholder.typicode.com/photos?albumId=1”
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+MaterialUI – Lista que utiliza o plugin Material-UI e apresenta diferentes queries em decorrência do utilizador, a partir do UserContext.js que foi definido na Home e repassado para todas as outras páginas na estrutura da NavBar. A API de referência foi: “https://jsonplaceholder.typicode.com/todos?userId=2” ou “https://jsonplaceholder.typicode.com/todos”
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+DataGrid – Lista que utiliza o plugin DataGrid e tem como principal funcionalidade a opção de filtro por coluna. Este componente utiliza-se do plugin faker, que foi implementado no arquivo createRowData.js e assim apresenta dados fictícios. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ReactTable – Lista que utiliza o plugin ReactTable e apresenta uma lista mais completa com paginação, ordenação por campos, apresentação por diferentes quantidades de registros e filtro por conteúdo na tabela. A API de referência foi: “https://jsonplaceholder.typicode.com/todos”
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+About – Página que apresenta 2 componentes. 
+•	AboutInfo: que utiliza a opção de useFetch acoplado em seu código.
+•	AboutGroupList que listagem simples e que assim como outros componentes do sistema, utiliza a função Hooks.js para retornar os dados. 
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Informações úteis
+•	O projeto busca se utilizar de comandos do React Hooks.
+•	Grande parte das páginas que retornam dados, utilizam o Hooks.js que se trata de um função React Hooks chamada “useFetch”. E a partir de uma URL retorna os dados e uma indicação true/false para dizer se os dados já foram carregados ou não.
+•	O plugin utilizado para o roteamento do projeto foi o React Router e foi aplicado no arquivo NavBar.js.
+•	Informações relacionadas ao tipo de utilizados foi o UserContext, que da forma que foi aplicado consegue ser lido em todas as páginas do projeto, sem a necessidade de ser repassado de componente para componente. 
