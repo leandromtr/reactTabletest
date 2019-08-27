@@ -15,11 +15,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Context from "../UserContext";
 
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-
 function createData(codigo, unidade, viatura, data, hora, tipo, evento, estado, observacoes, utilizador, actualizadoem) {
   return { codigo, unidade, viatura, data, hora, tipo, evento, estado, observacoes, utilizador, actualizadoem};
 }
@@ -93,7 +88,6 @@ function EnhancedTableHead(props) {
             padding={row.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === row.id ? order : false}
           >            
-            {/* <button onClick={() => setAcesso("Admin")}>Admin</button> */}
             <TableSortLabel
               active={orderBy === row.id}
               direction={order}
@@ -151,16 +145,6 @@ const EnhancedTableToolbar = props => {
         </Typography>        
       </div>
       <div className={classes.spacer} />
-
-
-      {/* <TextField
-        hintText="Query"
-        floatingLabelText="Query"
-        value={this.state.query}
-        onChange={e => this.setState({ query: e.target.value })}
-        //floatingLabelText
-      /> */}
-
     </Toolbar>
   );
 };
@@ -210,8 +194,6 @@ export default function EnhancedTable() {
   }
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
-  const { acesso, setAcesso } = useContext(Context)
 
   return (
     <Fragment>  
@@ -281,7 +263,7 @@ export default function EnhancedTable() {
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
+        label="Compactar Linhas"
       />
     </div>
     </Fragment>

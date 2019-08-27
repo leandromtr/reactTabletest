@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-//import { useFetch } from "../pages/hooks";
 
-const useFetch = url => {
+
+const useFetch = url => { 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,14 +20,7 @@ const useFetch = url => {
 };
 
 function App() {
-
-  const {data,loading} = useFetch("https://jsonplaceholder.typicode.com/todos/1");
-  //const {data,loading} = useFetch("http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetDGroup")
-  //const {data,loading} = useFetch("http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetVehicle?Fields=CADVehicleId;CADUnitId;CADUnitId;ViaMATRICULA;SBOXID")
-  //const aaa = JSON.parse(data).lstDGroupData;
-
-  //{console.log(JSON.parse(data))}
-  // {console.log(JSON.parse(JSON.stringify(questionGlobal)))}
+const {data,loading} = useFetch("http://jsonplaceholder.typicode.com/users/1");
 
   return (
      <div>
@@ -37,16 +29,16 @@ function App() {
         <div className="row mb-2">
           <div className="col-md-6">
             <div className="col p-4 d-flex flex-column position-static">
-              <p className="mb-1"><b>Name: </b>{data.id}</p>
-              <p className="mb-1"><b>sUserName: </b>{data.id}</p>
-              <p className="mb-1"><b>sDomain: </b>{data.id}</p>
+              <p className="mb-1"><b>Name: </b>{data.name}</p>
+              <p className="mb-1"><b>sUserName: </b>{data.username}</p>
+              <p className="mb-1"><b>sDomain: </b>{data.email}</p>
             </div>
           </div>
           <div className="col-md-6">
             <div className="col p-4 d-flex flex-column position-static">
               <p className="mb-1"><b>iEmployeeId: </b>{data.id}</p>
               <p className="mb-1"><b>iCaddbmCommandAccess: </b>{data.id}</p>
-              <p className="mb-1"><b>iCadCommandAccess: </b>{data.id}</p>
+              <p className="mb-1"><b>iCadCommandAccess: </b>{data.zipcode}</p>
             </div>
           </div>
         </div> 

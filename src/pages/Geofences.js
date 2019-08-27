@@ -1,20 +1,6 @@
-// import React from 'react'
-
-// export default function Geofences() {
-//     return (
-//         <div className="container">
-//             <div className="row">
-//                 <br/>
-//                     Geofences
-//                 <br/>
-//             </div>
-//         </div>
-//     )
-// }
-
-
 import React from "react";
-import { useFetch } from "./hooks";
+import { useFetch } from "../services/hooks";
+
 function Photos() {
   const [data, loading] = useFetch(
     "https://jsonplaceholder.typicode.com/photos?albumId=1"
@@ -29,7 +15,6 @@ function Photos() {
           {data.map(({ id, title, url }) => (
             <li key={`photo-${id}`}>
                 {title} - {url}
-              {/* <img alt={title} src={url} /> */}
             </li>
           ))}
         </ul>

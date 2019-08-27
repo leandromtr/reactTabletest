@@ -15,19 +15,10 @@ const useStyles = makeStyles(theme => ({
   
 
   export default function Relatorios() {
-    const { count, setCount } = useContext(Context)
     const classes = useStyles();
   
     return (      
         <Fragment>
-{/* 
-    <div>
-      <h1 style={{ color: "red" }}>-: {count}</h1>
-      <button onClick={() => setCount(0)}>zerar</button>      
-      <button onClick={() => setCount(count + 1)}>^</button>
-      <button onClick={() => setCount(count - 1)}>v</button>
-    </div> */}
-
             <Button variant="contained" href="#contained-buttons" className={classes.button}>
                 Relatório de Viagens
             </Button>

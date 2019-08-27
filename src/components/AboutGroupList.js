@@ -1,21 +1,14 @@
 import React from "react";
-import { useFetch } from "../pages/hooks";
+import { useFetch } from "../services/hooks";
 
 
 export default function AboutGroupList() {
   const [data, loading] = useFetch(
-    // "http://lis-sgiv-smsiap/IPT_FLeet_RestApi/api/GetDGroup"
     "https://jsonplaceholder.typicode.com/todos/"
   );
 
-//   let dataX = JSON.parse(data)
-
   return (
     <>
-      {/* {console.log(JSON.parse(data))} */}
-      {/* {console.log({data})} */}
-
-
       {loading ? (
         "Loading..."
       ) : (
@@ -31,15 +24,6 @@ export default function AboutGroupList() {
 
           ))}
         </div>
-
-        
-        //   {data.map(({ id, title, url }) => (
-        //     <li key={`photo-${id}`}>
-        //         {title} - {title}
-        //       {/* <img alt={title} src={url} /> */}
-        //     </li>
-        //   ))}
-        
       )}
     </>
   );

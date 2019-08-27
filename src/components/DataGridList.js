@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import ReactDataGrid from "react-data-grid";
 import { Toolbar, Data } from "react-data-grid-addons";
 
@@ -62,8 +61,6 @@ const columns = [
   }
 ].map(c => ({ ...c, ...defaultColumnProperties }));
 
-const ROW_COUNT = 50;
-
 const handleFilterChange = filter => filters => {
   const newFilters = { ...filters };
   if (filter.filterTerm) {
@@ -99,10 +96,8 @@ export default function Example({ initialRows }) {
     <ReactDataGrid
       columns={columns}
       rowGetter={i => filteredRows[i]}
-      //rowGetter={i => rows[i]}
 
       rowsCount={filteredRows.length}
-      //rowsCount={ROW_COUNT}
       
       minHeight={500}
       toolbar={<Toolbar enableFilter={true} />}
